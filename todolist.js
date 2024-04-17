@@ -9,6 +9,7 @@ let user_tasks = [
 
 const showTasks = () => {
   let taskListContainer = document.getElementById("taskList");
+  taskListContainer.innerHTML = "";
 
   user_tasks.forEach((task, index) => {
     let card = document.createElement("div");
@@ -16,11 +17,32 @@ const showTasks = () => {
     card.innerHTML = `
       <div class="card-body">
         <h5 class="card-title">${task.task}</h5>
-        <p class="card-text">${task.completed ? 'Completed' : 'Incomplete'}</p>
+        <p class="card-text">${task.completed ? 'Completado' : 'Sin completar'}</p>
       <div>
     `;
     taskListContainer.appendChild(card);
   });
 }
+
+document.getElementById("addTaskForm").addEventListener("submit", (event) => {
+    event.preventDefault(); 
+    
+    
+    let taskNameInput = document.getElementById("taskName");
+    let taskName = taskNameInput.value.trim();
+    
+    if (taskName !== "") {
+      
+      user_tasks.push({ task: taskName, completed: false });
+      
+      
+      taskNameInput.value = "";
+      
+      showTasks();
+    } else {
+      alert("Por favor, ingrese el nombre de una tarea.");
+    }
+  });
+
 
 showTasks();
