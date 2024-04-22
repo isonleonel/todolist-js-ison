@@ -7,7 +7,7 @@ Una simple aplicación web de "To-Do List" hecha con HTML, CSS y JavaScript. La 
 - Agregar tareas a la to-do list.
 - Eliminar tareas de la lista.
 - Marcar tareas como completadas o incompletas.
-- Filtrar tareas basadas en su estado de compleción.
+- Filtrar tareas basadas en su estado de completitud.
 
 ## Getting Started
 
