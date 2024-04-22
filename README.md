@@ -1,4 +1,4 @@
-# To-Do List App | Ison. Mariano Leonel | Comisión A
+# To-Do List App | Ison, Mariano Leonel | Comisión A
 
 Una simple aplicación web de "To-Do List" hecha con HTML, CSS y JavaScript. La aplicación permite a usuarios agregar, borrar y marcar tareas como completadas o incompletas.
 
