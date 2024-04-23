@@ -17,3 +17,21 @@ Para correr la aplicación de manera local, realice lo siguiente:
 
    ```bash
    git clone git@github.com:tu-username/todolist-js-ison.git
+   ```
+2. Navegar al directorio del proyecto:
+
+   ```bash
+   cd todo-list-app
+   ```
+3. Abrir el archivo 'main.html' en tu navegador.
+
+## Usage
+
+- Para agregar una tarea, ingresa el nombre de la tarea en el campo de entrada y clickeá el botón "Enviar".
+- Para eliminar una tarea, clickeá el boton de cerrar (X) que esta en la esquina superior derecha de la tarea.
+- Para marcar una tarea como completada o incompleta, clickeá el boton correspondiente debajo de la tarea.
+- Usa el menú desplegable para filtrar tareas según su estado de completitud.
+
+## Dependencias
+
+- Bootstrap
