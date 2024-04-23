@@ -32,6 +32,6 @@ Para correr la aplicación de manera local, realice lo siguiente:
 - Para marcar una tarea como completada o incompleta, clickeá el boton correspondiente debajo de la tarea.
 - Usa el menú desplegable para filtrar tareas según su estado de completitud.
 
-## Dependencias
+## Dependencies
 
 - Bootstrap
