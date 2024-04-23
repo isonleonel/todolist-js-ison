@@ -7,6 +7,33 @@ let user_tasks = [
     { task : "temporibus esse repellendus", completed : false },
 ]
 
+// Funcion para recuperar las tareas del localStorage
+const getTasksFromLocalStorage = () => {
+  const storedTasks = localStorage.getItem('user_tasks');
+  return storedTasks ? JSON.parse(storedTasks) : [];
+}
+
+// Funcion para guardar las tareas en el localStorage
+const saveTasksToLocalStorage = (tasks) => {
+  localStorage.setItem('user_tasks', JSON.stringify(tasks));
+}
+
+// Agregar tareas al array y actualizar el localStorage
+const addTask = (taskName) => {
+  const tasks = getTasksFromLocalStorage();
+  tasks.push({ task: taskName, completed: false });
+  saveTasksToLocalStorage(tasks);
+  showTasks(tasks);
+};
+
+// Funcion para eliminar una tarea y actualizar el localStorage
+const deleteTask = (index) => {
+  const tasks = getTasksFromLocalStorage();
+  tasks.splice(index, 1);
+  saveTasksToLocalStorage(tasks);
+  showTasks(tasks);
+};
+
 // Event listener para el dropdown
 const addDropdownListeners = () => {
   document.getElementById("allTasks").addEventListener("click", showAllTasks);
@@ -26,26 +53,21 @@ const addCloseButtonListeners = () => {
 
 // Funcion para mostrar todas las tareas
 const showAllTasks = () => {
-  showTasks(user_tasks);
-}
+  const tasks = getTasksFromLocalStorage();
+  showTasks(tasks);
+};
 
 // Funcion para ver solo las tareas completadas
 const showCompletedTasks = () => {
-  const completedTasks = user_tasks.filter(task => task.completed);
-  showTasks(completedTasks);
-}
+  const tasks = getTasksFromLocalStorage().filter(task => task.completed);
+  showTasks(tasks);
+};
 
 // Funcion para ver las tareas incompletas
 const showIncompleteTasks = () => {
-  const incompleteTasks = user_tasks.filter(task => !task.completed);
-  showTasks(incompleteTasks);
-}
-
-// Funcion para eliminar una tarea
-const deleteTask = (index) => {
-  user_tasks.splice(index, 1); 
-  showTasks(user_tasks); 
-}
+  const tasks = getTasksFromLocalStorage().filter(task => !task.completed);
+  showTasks(tasks);
+};
 
 // Renderizar las tareas
 const showTasks = (tasks) => {
@@ -78,13 +100,15 @@ const showTasks = (tasks) => {
   
 }
 
-// Cambiar el estado del boton
+// Cambiar el estado del boton y actualiza el localStorage
 const toggleTaskState = (index) => {
-    user_tasks[index].completed = !user_tasks[index].completed;
-    showTasks(user_tasks);
-  }
+  const tasks = getTasksFromLocalStorage();
+  tasks[index].completed = !tasks[index].completed;
+  saveTasksToLocalStorage(tasks);
+  showTasks(tasks);
+};
 
-// Agregar tarea
+// Event listener para agregar la tarea
 document.getElementById("addTaskForm").addEventListener("submit", (event) => {
     event.preventDefault(); 
 
@@ -92,15 +116,12 @@ document.getElementById("addTaskForm").addEventListener("submit", (event) => {
     let taskName = taskNameInput.value.trim();
     
     if (taskName !== "") {
-
-      user_tasks.push({ task: taskName, completed: false });
+      addTask(taskName);
       taskNameInput.value = "";
-      showTasks(user_tasks);
-
-    } else {
+  } else {
       alert("Por favor, ingrese el nombre de una tarea.");
-    }
+  }
 });
 
 
-showTasks(user_tasks);
+showAllTasks();
